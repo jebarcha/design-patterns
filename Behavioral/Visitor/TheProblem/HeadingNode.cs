@@ -12,5 +12,10 @@ namespace DesignPatterns.Behavioral.Visitor.TheProblem
         {
             Console.WriteLine("Highligth-heading-withTheProblem");
         }
+
+        public void PlainText()
+        {
+            Console.WriteLine("Plantext-heading-withTheProblem");
+        }
     }
 }

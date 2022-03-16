@@ -12,5 +12,10 @@ namespace DesignPatterns.Behavioral.Visitor.TheProblem
         {
             Console.WriteLine("Highlight-anchor-withTheProblem");
         }
+
+        public void PlainText()
+        {
+            Console.WriteLine("PlainText-anchor-withTheProblem");
+        }
     }
 }

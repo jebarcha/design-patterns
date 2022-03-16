@@ -1,10 +1,13 @@
 ﻿using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.Visitor;
+using DesignPatterns.Structural.Facade;
 
 //Strategy();
 //State();
-Visitor();
+//Visitor();
+
+Facade();
 
 #region Behavioral
 void Strategy()
@@ -29,15 +32,6 @@ void State()
     canvas.MouseDown();
     canvas.MouseUp();
 
-void Visitor()
-{
-    var document = new HtmlDocument();
-    document.Add(new HeadingNode());
-    document.Add(new AnchorNode());
-    document.Execute(new HighlightOperation());
-    document.Execute(new PlainTextOperation());
-}
-
 }
 
 void Visitor()
@@ -55,4 +49,20 @@ void Visitor()
     //document.Execute(new PlainTextOperation());
 }
 
+#endregion
+
+#region Structural
+void Facade()
+{
+    var service = new NotificationService();
+    service.Send("Hello World", "target");
+
+    //var server = new NotificationServer();
+    //var connection = server.Connect("ip");
+    //var authToken = server.Authenticate("appID", "key");
+    //var message = new Message("Hello World");
+    //server.Send(authToken, message, "target");
+    //connection.Disconnect();
+
+}
 #endregion
