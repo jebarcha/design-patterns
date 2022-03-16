@@ -1,13 +1,17 @@
 ﻿using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
+using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
 using DesignPatterns.Structural.Facade;
 
 //Strategy();
 //State();
 //Visitor();
+TemplateMethod();
 
-Facade();
+
+
+//Facade();
 
 #region Behavioral
 void Strategy()
@@ -48,7 +52,11 @@ void Visitor()
     //document.Execute(new HighlightOperation());
     //document.Execute(new PlainTextOperation());
 }
-
+void TemplateMethod()
+{
+    var task = new TransferMoneyTask();
+    task.Execute();
+}
 #endregion
 
 #region Structural
