@@ -1,5 +1,6 @@
 ﻿using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Command.Example2;
+using DesignPatterns.Behavioral.Command.Example3_UndoableOperations;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
@@ -64,20 +65,35 @@ void Command()
     // Checkbox
     // Textbox
     //Example 1
-    Console.WriteLine("Example 1");
-    var service = new CustomerService();
-    var command = new AddCustomerCommand(service);
-    var button = new Button(command);
-    button.Click();
+    //Console.WriteLine("Example 1");
+    //var service = new CustomerService();
+    //var command = new AddCustomerCommand(service);
+    //var button = new Button(command);
+    //button.Click();
 
-    Console.WriteLine("\nExample 2-Composite Command");
-    // Composite Command Example:
-    var composite = new CompositeCommand();
-    composite.Add(new BlackAndWhiteCommand());
-    composite.Add(new ResizeCommand());
-    composite.Execute();
-    composite.Execute();
+    //Console.WriteLine("\nExample 2-Composite Command");
+    //// Example 2 Composite Command Example:
+    //var composite = new CompositeCommand();
+    //composite.Add(new BlackAndWhiteCommand());
+    //composite.Add(new ResizeCommand());
+    //composite.Execute();
+    //composite.Execute();
 
+    // Example 3 - Undoable operations
+    Console.WriteLine("\nExample 3-Undoable Command");
+    var history = new DesignPatterns.Behavioral.Command.Example3_UndoableOperations.History();
+    var document = new DesignPatterns.Behavioral.Command.Example3_UndoableOperations.HtmlDocument();
+    document.Content = "Hello World";
+
+    var boldCommand = new DesignPatterns.Behavioral.Command.Example3_UndoableOperations.BoldCommand(document, history);
+    boldCommand.Execute();
+    Console.WriteLine(document.Content);
+
+    //boldCommand.UnExecute();
+    //Console.WriteLine(document.Content);
+    var undoCommand = new UndoCommand(history);
+    undoCommand.Execute();
+    Console.WriteLine(document.Content);
 }
 #endregion
 
