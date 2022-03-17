@@ -1,4 +1,6 @@
-﻿using DesignPatterns.Behavioral.State;
+﻿using DesignPatterns.Behavioral.Command;
+using DesignPatterns.Behavioral.Command.Example2;
+using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
@@ -7,9 +9,8 @@ using DesignPatterns.Structural.Facade;
 //Strategy();
 //State();
 //Visitor();
-TemplateMethod();
-
-
+//TemplateMethod();
+Command();
 
 //Facade();
 
@@ -56,6 +57,27 @@ void TemplateMethod()
 {
     var task = new TransferMoneyTask();
     task.Execute();
+}
+void Command()
+{
+    // Button
+    // Checkbox
+    // Textbox
+    //Example 1
+    Console.WriteLine("Example 1");
+    var service = new CustomerService();
+    var command = new AddCustomerCommand(service);
+    var button = new Button(command);
+    button.Click();
+
+    Console.WriteLine("\nExample 2-Composite Command");
+    // Composite Command Example:
+    var composite = new CompositeCommand();
+    composite.Add(new BlackAndWhiteCommand());
+    composite.Add(new ResizeCommand());
+    composite.Execute();
+    composite.Execute();
+
 }
 #endregion
 
