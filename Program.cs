@@ -5,15 +5,25 @@ using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
+using DesignPatterns.Structural.Adapter;
 using DesignPatterns.Structural.Facade;
 
+#region Call Behavioral
 //Strategy();
 //State();
 //Visitor();
 //TemplateMethod();
-Command();
+//Command();
+#endregion
 
+#region Call Structural
 //Facade();
+Adapter();
+#endregion
+
+#region Call Creational
+//TODO: Creational
+#endregion
 
 #region Behavioral
 void Strategy()
@@ -54,6 +64,7 @@ void Visitor()
     //document.Execute(new HighlightOperation());
     //document.Execute(new PlainTextOperation());
 }
+
 void TemplateMethod()
 {
     var task = new TransferMoneyTask();
@@ -110,5 +121,12 @@ void Facade()
     //server.Send(authToken, message, "target");
     //connection.Disconnect();
 
+}
+void Adapter()
+{
+    var imageView = new ImageView(new Image());
+    imageView.Apply(new VividFilter());
+    //imageView.Apply(new Caramel());  // error because the thirparty does not implement our IFilter interface
+    imageView.Apply(new CaramelFilterAdapter(new Caramel()));
 }
 #endregion
