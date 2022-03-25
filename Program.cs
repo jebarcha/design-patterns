@@ -6,7 +6,15 @@ using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
 using DesignPatterns.Structural.Adapter;
+using DesignPatterns.Structural.Composite;
 using DesignPatterns.Structural.Facade;
+
+//if (IsCont(10007))
+//    Console.WriteLine("IsCont");
+//else
+//    Console.WriteLine("Is not Cont");
+//return;
+
 
 #region Call Behavioral
 //Strategy();
@@ -18,7 +26,9 @@ using DesignPatterns.Structural.Facade;
 
 #region Call Structural
 //Facade();
-Adapter();
+//Adapter();
+Composite();
+
 #endregion
 
 #region Call Creational
@@ -129,4 +139,29 @@ void Adapter()
     //imageView.Apply(new Caramel());  // error because the thirparty does not implement our IFilter interface
     imageView.Apply(new CaramelFilterAdapter(new Caramel()));
 }
+void Composite()
+{
+    var group1 = new Group();
+    group1.Add(new Shape()); // our imaginary square
+    group1.Add(new Shape()); // our imaginary square
+
+    var group2 = new Group();
+    group2.Add(new Shape()); // our imaginary circle
+    group2.Add(new Shape()); // our imaginary circle
+
+    var group = new Group();
+    group.Add(group1);  //with this structure we cannot add a group inside a group
+    group.Add(group2);
+    group.Render();
+    group.Move();
+
+    
+}
+
 #endregion
+
+//static bool IsCont(int FileType)
+//{
+//    var fileTypesContinuousContent = new List<int>() { 10007, 10008, 10009, 10010 };
+//    return fileTypesContinuousContent.Contains(FileType);
+//}
