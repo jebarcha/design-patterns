@@ -1,4 +1,5 @@
-﻿using DesignPatterns.Behavioral.Command;
+﻿using DesignPatterns.Behavioral.ChainOfResponsibility;
+using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Command.Example2;
 using DesignPatterns.Behavioral.Command.Example3_UndoableOperations;
 using DesignPatterns.Behavioral.State;
@@ -22,12 +23,14 @@ using DesignPatterns.Structural.Facade;
 //Visitor();
 //TemplateMethod();
 //Command();
+ChainOfResponsibility();
+
 #endregion
 
 #region Call Structural
 //Facade();
 //Adapter();
-Composite();
+//Composite();
 
 #endregion
 
@@ -42,7 +45,6 @@ void Strategy()
     imageStorage.store("a", new JpegCompressor(), new BlackAndWhiteFilter());
     imageStorage.store("b", new PngCompressor(), new BlackAndWhiteFilter());
 }
-
 void State()
 {
     var canvas = new Canvas();
@@ -59,7 +61,6 @@ void State()
     canvas.MouseUp();
 
 }
-
 void Visitor()
 {
     var docWithProblem = new DesignPatterns.Behavioral.Visitor.TheProblem.HtmlDocument();
@@ -74,7 +75,6 @@ void Visitor()
     //document.Execute(new HighlightOperation());
     //document.Execute(new PlainTextOperation());
 }
-
 void TemplateMethod()
 {
     var task = new TransferMoneyTask();
@@ -115,6 +115,27 @@ void Command()
     var undoCommand = new UndoCommand(history);
     undoCommand.Execute();
     Console.WriteLine(document.Content);
+}
+void ChainOfResponsibility()
+{
+    // Example 1 with a logger:
+    // authenticator -> logger -> compressor
+    //var compressor = new Compressor(null);  //this is the last handler in the chain, so create it first.
+    //var logger = new Logger(compressor);
+    //var authenticator = new Authenticator(logger);
+
+    //var server = new WebServer(authenticator); //here we pass our first handler
+    //server.Handle(new HttpRequest("admin", "123456"));
+
+
+    // Exmaple 2 with an encryptor
+    // authenticator->encryptor->compressor
+    var encryptor = new Encryptor(null); //this is the last handler in the chain, so create it first.
+    var compressor2 = new Compressor(encryptor);
+    var authenticator2 = new Authenticator(compressor2);
+
+    var server2 = new WebServer(authenticator2); //here we pass our first handler
+    server2.Handle(new HttpRequest("admin", "123456"));
 }
 #endregion
 
