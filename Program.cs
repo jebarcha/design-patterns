@@ -2,6 +2,7 @@
 using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Command.Example2;
 using DesignPatterns.Behavioral.Command.Example3_UndoableOperations;
+using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
@@ -23,7 +24,10 @@ using DesignPatterns.Structural.Facade;
 //Visitor();
 //TemplateMethod();
 //Command();
-ChainOfResponsibility();
+//ChainOfResponsibility();
+Memento();
+
+
 
 #endregion
 
@@ -136,6 +140,24 @@ void ChainOfResponsibility()
 
     var server2 = new WebServer(authenticator2); //here we pass our first handler
     server2.Handle(new HttpRequest("admin", "123456"));
+}
+void Memento()
+{
+    var editor = new Editor();
+    var history = new DesignPatterns.Behavioral.Memento.History();
+
+    editor.SetContent("a");
+    history.Push(editor.CreateState());
+
+    editor.SetContent("b");
+    history.Push(editor.CreateState());
+
+    editor.SetContent("c");
+    editor.Restore(history.Pop());
+
+    Console.WriteLine(editor.GetContent());
+    editor.Restore(history.Pop());
+    Console.WriteLine(editor.GetContent());
 }
 #endregion
 
