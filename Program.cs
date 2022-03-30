@@ -7,6 +7,8 @@ using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
+using DesignPatterns.Creational.Prototype;
+using DesignPatterns.Creational.Singleton;
 using DesignPatterns.Structural.Adapter;
 using DesignPatterns.Structural.Composite;
 using DesignPatterns.Structural.Facade;
@@ -17,7 +19,6 @@ using DesignPatterns.Structural.Facade;
 //    Console.WriteLine("Is not Cont");
 //return;
 
-
 #region Call Behavioral
 //Strategy();
 //State();
@@ -25,7 +26,7 @@ using DesignPatterns.Structural.Facade;
 //TemplateMethod();
 //Command();
 //ChainOfResponsibility();
-Memento();
+//Memento();
 
 
 
@@ -40,6 +41,43 @@ Memento();
 
 #region Call Creational
 //TODO: Creational
+//Prototype();
+Singleton();
+
+
+//Builder();
+
+#endregion
+
+#region Creational
+void Prototype()
+{
+    Console.WriteLine("Prototype Pattern");
+    var circle = new ContextMenu();
+    circle.Duplicate(new Circle());
+
+}
+void Singleton()
+{
+    ConfigManager manager = ConfigManager.GetInstance();
+    manager.Set("name", "Jose");
+    Console.WriteLine(manager.Get("name"));
+
+    ConfigManager other = ConfigManager.GetInstance();
+    Console.WriteLine(other.Get("name"));
+
+    // With the problem:
+    //ConfigManager manager = new ConfigManager();
+    //manager.Set("name", "Jose");
+
+    //ConfigManager other = new ConfigManager();
+    //Console.WriteLine(other.Get("name"));
+}
+void Builder()
+{
+    Console.WriteLine("Builder Pattern");
+
+}
 #endregion
 
 #region Behavioral
