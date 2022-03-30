@@ -7,6 +7,7 @@ using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
+using DesignPatterns.Creational.FactoryMethod;
 using DesignPatterns.Creational.Prototype;
 using DesignPatterns.Creational.Singleton;
 using DesignPatterns.Structural.Adapter;
@@ -40,9 +41,10 @@ using DesignPatterns.Structural.Facade;
 #endregion
 
 #region Call Creational
-//TODO: Creational
 //Prototype();
-Singleton();
+//Singleton();
+FactoryMethod();
+
 
 
 //Builder();
@@ -72,6 +74,11 @@ void Singleton()
 
     //ConfigManager other = new ConfigManager();
     //Console.WriteLine(other.Get("name"));
+}
+void FactoryMethod()
+{
+    new ProductsController().ListProducts();
+
 }
 void Builder()
 {
