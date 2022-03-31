@@ -15,7 +15,8 @@ The Factory Method pattern relies on inheritance
 Using inheritance and polymorphism (override methods) we add flexibility to our design.
 not use static methods.
 
-
+## FACTORY METHOD is a **method**
+## ABSTRACT FACTORY is an **abstraction (interface)**
 
 
 

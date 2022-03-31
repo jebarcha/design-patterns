@@ -7,6 +7,8 @@ using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
+using DesignPatterns.Creational.AbstractFactory;
+using DesignPatterns.Creational.AbstractFactory.app;
 using DesignPatterns.Creational.FactoryMethod;
 using DesignPatterns.Creational.Prototype;
 using DesignPatterns.Creational.Singleton;
@@ -43,11 +45,8 @@ using DesignPatterns.Structural.Facade;
 #region Call Creational
 //Prototype();
 //Singleton();
-FactoryMethod();
-
-
-
-//Builder();
+//FactoryMethod();
+Builder();
 
 #endregion
 
@@ -61,6 +60,7 @@ void Prototype()
 }
 void Singleton()
 {
+    Console.WriteLine("Singleton Pattern");
     ConfigManager manager = ConfigManager.GetInstance();
     manager.Set("name", "Jose");
     Console.WriteLine(manager.Get("name"));
@@ -77,8 +77,10 @@ void Singleton()
 }
 void FactoryMethod()
 {
-    new ProductsController().ListProducts();
+    Console.WriteLine("Abstract Factory Pattern");
+    new ContactForm().Render(new MaterialWidgetFactory());
 
+    new ContactForm().Render(new AntWidgetFactory());
 }
 void Builder()
 {
