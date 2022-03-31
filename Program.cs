@@ -9,6 +9,7 @@ using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
 using DesignPatterns.Creational.AbstractFactory;
 using DesignPatterns.Creational.AbstractFactory.app;
+using DesignPatterns.Creational.Builder;
 using DesignPatterns.Creational.FactoryMethod;
 using DesignPatterns.Creational.Prototype;
 using DesignPatterns.Creational.Singleton;
@@ -84,8 +85,19 @@ void FactoryMethod()
 }
 void Builder()
 {
-    Console.WriteLine("Builder Pattern");
+    var presentation = new Presentation();
+    presentation.AddSlide(new Slide("Slide 1"));
+    presentation.AddSlide(new Slide("Slide 2"));
 
+    var builder = new PdfDocumentBuilder();
+    presentation.Export(builder);
+    var pdf = builder.GetPdfDocument();
+    //Console.WriteLine(pdf);
+
+    var builderMovie = new MovieBuilder();
+    presentation.Export(builderMovie);
+    var movie = builderMovie.GetMovie();
+    //Console.WriteLine(movie);
 }
 #endregion
 

@@ -14,24 +14,14 @@ namespace DesignPatterns.Creational.Builder
             _slides.Add(slide);
         }
 
-        public void Export(EnumPresentationFormat format)
+        public void Export(IPresentationBuilder builder)
         {
-            if (format == EnumPresentationFormat.PDF)
+            builder.AddSlide(new Slide("Copyright"));
+            foreach (var slide in _slides)
             {
-                var pdf = new PdfDocument();
-                foreach (var slide in _slides)
-                {
-                    pdf.AddPage(slide.Text);
-                }
+                builder.AddSlide(slide);
             }
-            else if (format == EnumPresentationFormat.MOVIE)
-            {
-                var movie = new Movie();
-                foreach (var slide in _slides)
-                {
-                    movie.AddFrame(slide.Text, 5);
-                }
-            }
+   
         }
     }
 }
