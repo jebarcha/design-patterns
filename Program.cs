@@ -14,8 +14,10 @@ using DesignPatterns.Creational.FactoryMethod;
 using DesignPatterns.Creational.Prototype;
 using DesignPatterns.Creational.Singleton;
 using DesignPatterns.Structural.Adapter;
+using DesignPatterns.Structural.Bridge;
 using DesignPatterns.Structural.Composite;
 using DesignPatterns.Structural.Facade;
+using DesignPatterns.Structural.Proxy;
 
 //if (IsCont(10007))
 //    Console.WriteLine("IsCont");
@@ -31,7 +33,7 @@ using DesignPatterns.Structural.Facade;
 //Command();
 //ChainOfResponsibility();
 //Memento();
-
+Bridge();
 
 
 #endregion
@@ -40,18 +42,23 @@ using DesignPatterns.Structural.Facade;
 //Facade();
 //Adapter();
 //Composite();
+//Proxy();
 
 #endregion
 
 #region Call Creational
+//AbstractFactory();
 //Prototype();
 //Singleton();
 //FactoryMethod();
-Builder();
-
+//Builder();
 #endregion
 
 #region Creational
+void FactoryMethod()
+{
+    
+}
 void Prototype()
 {
     Console.WriteLine("Prototype Pattern");
@@ -76,7 +83,7 @@ void Singleton()
     //ConfigManager other = new ConfigManager();
     //Console.WriteLine(other.Get("name"));
 }
-void FactoryMethod()
+void AbstractFactory()
 {
     Console.WriteLine("Abstract Factory Pattern");
     new ContactForm().Render(new MaterialWidgetFactory());
@@ -258,6 +265,33 @@ void Composite()
     group.Move();
 
     
+}
+void Proxy()
+{
+    var library = new Library();
+    string[] fileNames = { "a", "b", "c" };
+    foreach (var fileName in fileNames)
+    {
+        //library.Add(new EbookProxy(fileName));  // example 1
+        library.Add(new LoggingEbookProxy(fileName));  // example 2
+        // with the problem:
+        //library.Add(new RealEbook(fileName));
+    }
+
+    library.OpenEbook("a");
+    library.OpenEbook("b");
+}
+void Bridge()
+{
+    Console.WriteLine("Bridge Design Pattern");
+    var remoteControl = new RemoteControl(new SonyTV());
+    remoteControl.TurnOn();
+
+    var advRemoteControl = new AdvancedRemoteControl(new SonyTV());
+    advRemoteControl.TurnOn();
+
+    var samsung = new AdvancedRemoteControl(new SamsungTV());
+    samsung.TurnOn();
 }
 
 #endregion
