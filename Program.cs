@@ -16,6 +16,7 @@ using DesignPatterns.Creational.Singleton;
 using DesignPatterns.Structural.Adapter;
 using DesignPatterns.Structural.Bridge;
 using DesignPatterns.Structural.Composite;
+using DesignPatterns.Structural.Decorator;
 using DesignPatterns.Structural.Facade;
 using DesignPatterns.Structural.Proxy;
 
@@ -33,8 +34,6 @@ using DesignPatterns.Structural.Proxy;
 //Command();
 //ChainOfResponsibility();
 //Memento();
-Bridge();
-
 
 #endregion
 
@@ -43,6 +42,9 @@ Bridge();
 //Adapter();
 //Composite();
 //Proxy();
+//Bridge();
+Decorator();
+
 
 #endregion
 
@@ -293,7 +295,24 @@ void Bridge()
     var samsung = new AdvancedRemoteControl(new SamsungTV());
     samsung.TurnOn();
 }
+void Decorator()
+{
+    StoreCreditCard(new CloudStream());
 
+    StoreCreditCard(new EncryptedCloudStream(new CloudStream()));  //wrapping or decorating our CloudStream with the EnryptedCloudStream
+
+    StoreCreditCard(new CompressCloudStream(new CloudStream()));
+
+    StoreCreditCard(new EncryptedCloudStream(new CompressCloudStream(new CloudStream())));
+
+    //With the problem:
+    //var cloudStream = new EncryptedCloudStream(); //CloudStream();
+    //cloudStream.Write("Hello World");
+}
+static void StoreCreditCard(IStream stream)
+{
+    stream.Write("1234-1234-1234-1234");
+}
 #endregion
 
 //static bool IsCont(int FileType)
