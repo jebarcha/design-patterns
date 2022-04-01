@@ -18,6 +18,7 @@ using DesignPatterns.Structural.Bridge;
 using DesignPatterns.Structural.Composite;
 using DesignPatterns.Structural.Decorator;
 using DesignPatterns.Structural.Facade;
+using DesignPatterns.Structural.Flyweight;
 using DesignPatterns.Structural.Proxy;
 
 //if (IsCont(10007))
@@ -43,9 +44,8 @@ using DesignPatterns.Structural.Proxy;
 //Composite();
 //Proxy();
 //Bridge();
-Decorator();
-
-
+//Decorator();
+Flyweight();
 #endregion
 
 #region Call Creational
@@ -297,6 +297,7 @@ void Bridge()
 }
 void Decorator()
 {
+    Console.WriteLine("Decorator Design Pattern");
     StoreCreditCard(new CloudStream());
 
     StoreCreditCard(new EncryptedCloudStream(new CloudStream()));  //wrapping or decorating our CloudStream with the EnryptedCloudStream
@@ -312,6 +313,23 @@ void Decorator()
 static void StoreCreditCard(IStream stream)
 {
     stream.Write("1234-1234-1234-1234");
+}
+void Flyweight()
+{
+    Console.WriteLine("Flyweight Design Pattern");
+    // With this implementation we are storing our object in a single place in memory
+    var service = new PointService(new PointIconFactory());
+    foreach (var point in service.GetPoints())
+    {
+        point.Draw();
+    }
+
+    // With The Problem:
+    //var service = new PointService();
+    //foreach (var point in service.GetPoints())
+    //{
+    //    point.Draw();
+    //}
 }
 #endregion
 
