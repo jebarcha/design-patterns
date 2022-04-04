@@ -2,6 +2,7 @@
 using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Command.Example2;
 using DesignPatterns.Behavioral.Command.Example3_UndoableOperations;
+using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
@@ -35,6 +36,8 @@ using DesignPatterns.Structural.Proxy;
 //Command();
 //ChainOfResponsibility();
 //Memento();
+Iterator();
+
 
 #endregion
 
@@ -45,7 +48,7 @@ using DesignPatterns.Structural.Proxy;
 //Proxy();
 //Bridge();
 //Decorator();
-Flyweight();
+//Flyweight();
 #endregion
 
 #region Call Creational
@@ -226,6 +229,30 @@ void Memento()
     Console.WriteLine(editor.GetContent());
     editor.Restore(history.Pop());
     Console.WriteLine(editor.GetContent());
+}
+void Iterator()
+{
+    Console.WriteLine("Iterator Design Pattern");
+    var history = new BrowseHistory();
+    history.Push("a");
+    history.Push("b");
+    history.Push("c");
+
+    IIterator<string> iterator = history.CreateIterator();
+    while (iterator.HasNext())
+    {
+        var url = iterator.Current();
+        Console.WriteLine(url);
+        iterator.Next();
+    }
+
+    // With the Problem
+    //for (int i = 0; i < history.GetUrls().Count; i++)
+    //{
+    //    var url = history.GetUrls()[i];
+    //    Console.WriteLine(url);
+    //}
+
 }
 #endregion
 
