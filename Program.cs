@@ -3,6 +3,7 @@ using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Command.Example2;
 using DesignPatterns.Behavioral.Command.Example3_UndoableOperations;
 using DesignPatterns.Behavioral.Iterator;
+using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
@@ -36,7 +37,8 @@ using DesignPatterns.Structural.Proxy;
 //Command();
 //ChainOfResponsibility();
 //Memento();
-Iterator();
+//Iterator();
+Mediator();
 
 
 #endregion
@@ -253,6 +255,12 @@ void Iterator()
     //    Console.WriteLine(url);
     //}
 
+}
+void Mediator()
+{
+    Console.WriteLine("Mediator Design Pattern");
+    var dialog = new ArticlesDialogBox();
+    dialog.SimulateUserInteraction();
 }
 #endregion
 
