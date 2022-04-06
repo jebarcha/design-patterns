@@ -5,6 +5,7 @@ using DesignPatterns.Behavioral.Command.Example3_UndoableOperations;
 using DesignPatterns.Behavioral.Iterator;
 using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Behavioral.Memento;
+using DesignPatterns.Behavioral.Observer;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
@@ -38,8 +39,8 @@ using DesignPatterns.Structural.Proxy;
 //ChainOfResponsibility();
 //Memento();
 //Iterator();
-Mediator();
-
+//Mediator();
+Observer();
 
 #endregion
 
@@ -261,6 +262,19 @@ void Mediator()
     Console.WriteLine("Mediator Design Pattern");
     var dialog = new ArticlesDialogBox();
     dialog.SimulateUserInteraction();
+}
+void Observer()
+{
+    var dataSource = new DataSource();
+    var sheet1 = new SpreadSheet(dataSource);
+    var sheet2 = new SpreadSheet(dataSource);
+    var chart = new Chart(dataSource);
+
+    dataSource.AddObserver(sheet1);
+    dataSource.AddObserver(sheet2);
+    dataSource.AddObserver(chart);
+
+    dataSource.SetValue(1);
 }
 #endregion
 
