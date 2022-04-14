@@ -16,6 +16,7 @@ using DesignPatterns.Creational.Builder;
 using DesignPatterns.Creational.FactoryMethod;
 using DesignPatterns.Creational.Prototype;
 using DesignPatterns.Creational.Singleton;
+using DesignPatterns.Creational.Singleton.Demo2;
 using DesignPatterns.Structural.Adapter;
 using DesignPatterns.Structural.Bridge;
 using DesignPatterns.Structural.Composite;
@@ -40,7 +41,7 @@ using DesignPatterns.Structural.Proxy;
 //Memento();
 //Iterator();
 //Mediator();
-Observer();
+//Observer();
 
 #endregion
 
@@ -57,7 +58,10 @@ Observer();
 #region Call Creational
 //AbstractFactory();
 //Prototype();
+
 //Singleton();
+SingletonDemo2();
+
 //FactoryMethod();
 //Builder();
 #endregion
@@ -90,6 +94,15 @@ void Singleton()
 
     //ConfigManager other = new ConfigManager();
     //Console.WriteLine(other.Get("name"));
+}
+void SingletonDemo2()
+{
+    var logger1 = MyLogger.GetInstance("file1");
+    var logger2 = MyLogger.GetInstance("file1");
+    Console.WriteLine(logger1 == logger2);
+
+    var logger3 = MyLogger.GetInstance("file2");
+    Console.WriteLine(logger1 == logger3);
 }
 void AbstractFactory()
 {
