@@ -57,10 +57,12 @@ using DesignPatterns.Structural.Proxy;
 
 #region Call Creational
 //AbstractFactory();
+
 //Prototype();
+PrototypeDemo2();
 
 //Singleton();
-SingletonDemo2();
+//SingletonDemo2();
 
 //FactoryMethod();
 //Builder();
@@ -71,13 +73,26 @@ void FactoryMethod()
 {
     
 }
+
 void Prototype()
 {
-    Console.WriteLine("Prototype Pattern");
-    var circle = new ContextMenu();
-    circle.Duplicate(new Circle());
+    Console.WriteLine("Prototype Pattern - Demo 1");
+    var newComponent = new ContextMenu();
+    newComponent.Duplicate(new Circle());
+    newComponent.Duplicate(new Square());
+}
+void PrototypeDemo2()
+{
+    Console.WriteLine("Prototype Pattern - Demo 2");
+    var timeline = new DesignPatterns.Creational.Prototype.Demo2.Timeline();
+    var text = new DesignPatterns.Creational.Prototype.Demo2.Text("Hello");
+    timeline.Add(text);
+
+    var menu = new DesignPatterns.Creational.Prototype.Demo2.ContextMenu(timeline);
+    menu.Duplicate(text);
 
 }
+
 void Singleton()
 {
     Console.WriteLine("Singleton Pattern");
@@ -104,6 +119,7 @@ void SingletonDemo2()
     var logger3 = MyLogger.GetInstance("file2");
     Console.WriteLine(logger1 == logger3);
 }
+
 void AbstractFactory()
 {
     Console.WriteLine("Abstract Factory Pattern");
