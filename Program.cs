@@ -12,6 +12,7 @@ using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
 using DesignPatterns.Creational.AbstractFactory;
 using DesignPatterns.Creational.AbstractFactory.app;
+using DesignPatterns.Creational.AbstractFactory.Demo2;
 using DesignPatterns.Creational.Builder;
 using DesignPatterns.Creational.FactoryMethod;
 using DesignPatterns.Creational.FactoryMethod.Demo2;
@@ -58,6 +59,7 @@ using DesignPatterns.Structural.Proxy;
 
 #region Call Creational
 //AbstractFactory();
+AbstractFactoryDemo2();
 
 //Prototype();
 //PrototypeDemo2();
@@ -66,7 +68,7 @@ using DesignPatterns.Structural.Proxy;
 //SingletonDemo2();
 
 //FactoryMethod();
-FactoryMethodDemo2();
+//FactoryMethodDemo2();
 
 //Builder();
 #endregion
@@ -144,6 +146,14 @@ void AbstractFactory()
 
     new ContactForm().Render(new AntWidgetFactory());
 }
+void AbstractFactoryDemo2()
+{
+    var homePage = new HomePage();
+    //homePage.SetGoal(Goal.WEIGHT_LOSS);
+    homePage.SetGoal(new WeightLossFactory());
+    homePage.SetGoal(new BuildMuscleFactory());
+}
+
 void Builder()
 {
     var presentation = new Presentation();
