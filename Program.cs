@@ -14,6 +14,7 @@ using DesignPatterns.Creational.AbstractFactory;
 using DesignPatterns.Creational.AbstractFactory.app;
 using DesignPatterns.Creational.Builder;
 using DesignPatterns.Creational.FactoryMethod;
+using DesignPatterns.Creational.FactoryMethod.Demo2;
 using DesignPatterns.Creational.Prototype;
 using DesignPatterns.Creational.Singleton;
 using DesignPatterns.Creational.Singleton.Demo2;
@@ -59,12 +60,14 @@ using DesignPatterns.Structural.Proxy;
 //AbstractFactory();
 
 //Prototype();
-PrototypeDemo2();
+//PrototypeDemo2();
 
 //Singleton();
 //SingletonDemo2();
 
 //FactoryMethod();
+FactoryMethodDemo2();
+
 //Builder();
 #endregion
 
@@ -72,6 +75,20 @@ PrototypeDemo2();
 void FactoryMethod()
 {
     
+}
+void FactoryMethodDemo2()
+{
+    Console.WriteLine("Factory Method - Demo2");
+    //var scheduler = new Scheduler();
+    //scheduler.schedule(new Event());
+
+    // Standard scheduler using the Gregorian calendar
+    var scheduler = new Scheduler();
+    scheduler.Schedule(new Event());
+
+    // Arabian scheduler using the Arabian calendar
+    var arabianScheduler = new ArabianScheduler();
+    arabianScheduler.Schedule(new Event());
 }
 
 void Prototype()
