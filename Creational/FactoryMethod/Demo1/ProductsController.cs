@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.Creational.FactoryMethod
 {
-    public class ProductsController : SharpController // Controller
+    public class ProductsController : Controller //SharpController // Controller
     {
         public void ListProducts()
         {

@@ -10,10 +10,12 @@ using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.Visitor;
+using DesignPatterns.Behavioral.Visitor.Demo2;
 using DesignPatterns.Creational.AbstractFactory;
 using DesignPatterns.Creational.AbstractFactory.app;
 using DesignPatterns.Creational.AbstractFactory.Demo2;
 using DesignPatterns.Creational.Builder;
+using DesignPatterns.Creational.Builder.Demo2;
 using DesignPatterns.Creational.FactoryMethod;
 using DesignPatterns.Creational.FactoryMethod.Demo2;
 using DesignPatterns.Creational.Prototype;
@@ -37,6 +39,7 @@ using DesignPatterns.Structural.Proxy;
 //Strategy();
 //State();
 //Visitor();
+VisitorDemo2();
 //TemplateMethod();
 //Command();
 //ChainOfResponsibility();
@@ -59,7 +62,7 @@ using DesignPatterns.Structural.Proxy;
 
 #region Call Creational
 //AbstractFactory();
-AbstractFactoryDemo2();
+//AbstractFactoryDemo2();
 
 //Prototype();
 //PrototypeDemo2();
@@ -71,12 +74,13 @@ AbstractFactoryDemo2();
 //FactoryMethodDemo2();
 
 //Builder();
+//BuilderDemo2();
 #endregion
 
 #region Creational
 void FactoryMethod()
 {
-    
+    new ProductsController().ListProducts();
 }
 void FactoryMethodDemo2()
 {
@@ -170,6 +174,27 @@ void Builder()
     var movie = builderMovie.GetMovie();
     //Console.WriteLine(movie);
 }
+void BuilderDemo2()
+{
+    var document = new Document();
+    document.Add(new DesignPatterns.Creational.Builder.Demo2.Text("hola"));
+    document.Add(new DesignPatterns.Creational.Builder.Demo2.Image("pic1.jpg"));
+
+    document.Export(new HtmlDocumentBuilder(), "export.html");
+
+    // Only writes the text elements to the file
+    document.Export(new TextDocumentBuilder(), "export.txt");
+
+
+    //var document = new Document();
+    //document.Add(new DesignPatterns.Creational.Builder.Demo2.Text("hola"));
+    //document.Add(new DesignPatterns.Creational.Builder.Demo2.Image("pic1.jpg"));
+
+    //document.Export(ExportFormat.HTML, "export.html");
+
+    //// Only writes the text elements to the file
+    //document.Export(ExportFormat.TEXT, "export.txt");
+}
 #endregion
 
 #region Behavioral
@@ -197,17 +222,24 @@ void State()
 }
 void Visitor()
 {
-    var docWithProblem = new DesignPatterns.Behavioral.Visitor.TheProblem.HtmlDocument();
-    docWithProblem.Add(new DesignPatterns.Behavioral.Visitor.TheProblem.HeadingNode());
-    docWithProblem.Add(new DesignPatterns.Behavioral.Visitor.TheProblem.AnchorNode());
-    docWithProblem.Highlight();
+    //var docWithProblem = new DesignPatterns.Behavioral.Visitor.TheProblem.HtmlDocument();
+    //docWithProblem.Add(new DesignPatterns.Behavioral.Visitor.TheProblem.HeadingNode());
+    //docWithProblem.Add(new DesignPatterns.Behavioral.Visitor.TheProblem.AnchorNode());
+    //docWithProblem.Highlight();
     
     //Refactored using Visitor Design Pattern:
-    //var document = new HtmlDocument();
-    //document.Add(new HeadingNode());
-    //document.Add(new AnchorNode());
-    //document.Execute(new HighlightOperation());
-    //document.Execute(new PlainTextOperation());
+    var document = new DesignPatterns.Behavioral.Visitor.HtmlDocument();
+    document.Add(new HeadingNode());
+    document.Add(new AnchorNode());
+    document.Execute(new HighlightOperation());
+    document.Execute(new PlainTextOperation());
+}
+void VisitorDemo2()
+{
+    var wavFile = WavFile.Read("myfile.wav");
+    wavFile.applyFilter(new NoiseReductionFilter());
+    wavFile.applyFilter(new ReverbFilter());
+    wavFile.applyFilter(new NormalizeFilter());
 }
 void TemplateMethod()
 {
@@ -350,7 +382,7 @@ void Facade()
 }
 void Adapter()
 {
-    var imageView = new ImageView(new Image());
+    var imageView = new ImageView(new DesignPatterns.Structural.Adapter.Image());
     imageView.Apply(new VividFilter());
     //imageView.Apply(new Caramel());  // error because the thirparty does not implement our IFilter interface
     imageView.Apply(new CaramelFilterAdapter(new Caramel()));
