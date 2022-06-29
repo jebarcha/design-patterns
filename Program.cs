@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.Behavioral.ChainOfResponsibility;
+using DesignPatterns.Behavioral.ChainOfResponsibility.Demo2;
 using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Command.Example2;
 using DesignPatterns.Behavioral.Command.Example3_UndoableOperations;
@@ -39,10 +40,11 @@ using DesignPatterns.Structural.Proxy;
 //Strategy();
 //State();
 //Visitor();
-VisitorDemo2();
+//VisitorDemo2();
 //TemplateMethod();
 //Command();
 //ChainOfResponsibility();
+ChainOfResponsibilityDemo2();
 //Memento();
 //Iterator();
 //Mediator();
@@ -289,9 +291,8 @@ void ChainOfResponsibility()
     //var compressor = new Compressor(null);  //this is the last handler in the chain, so create it first.
     //var logger = new Logger(compressor);
     //var authenticator = new Authenticator(logger);
-
     //var server = new WebServer(authenticator); //here we pass our first handler
-    //server.Handle(new HttpRequest("admin", "123456"));
+    //server.Handle(new HttpRequest("admin1", "123456"));
 
 
     // Exmaple 2 with an encryptor
@@ -299,9 +300,17 @@ void ChainOfResponsibility()
     var encryptor = new Encryptor(null); //this is the last handler in the chain, so create it first.
     var compressor2 = new Compressor(encryptor);
     var authenticator2 = new Authenticator(compressor2);
-
     var server2 = new WebServer(authenticator2); //here we pass our first handler
     server2.Handle(new HttpRequest("admin", "123456"));
+}
+void ChainOfResponsibilityDemo2()
+{
+    Console.WriteLine("ChainOfResponsibilityDemo2");
+    var reader = DataReaderFactory.GetDataReaderChain();
+    reader.Read("data.xls");
+    reader.Read("data.numbers");
+    reader.Read("data.qbw");
+    reader.Read("data.jpg");
 }
 void Memento()
 {
