@@ -10,6 +10,7 @@ using DesignPatterns.Behavioral.Observer;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
 using DesignPatterns.Behavioral.TemplateMethod;
+using DesignPatterns.Behavioral.TemplateMethod.Demo2;
 using DesignPatterns.Behavioral.Visitor;
 using DesignPatterns.Behavioral.Visitor.Demo2;
 using DesignPatterns.Creational.AbstractFactory;
@@ -30,21 +31,16 @@ using DesignPatterns.Structural.Facade;
 using DesignPatterns.Structural.Flyweight;
 using DesignPatterns.Structural.Proxy;
 
-//if (IsCont(10007))
-//    Console.WriteLine("IsCont");
-//else
-//    Console.WriteLine("Is not Cont");
-//return;
-
 #region Call Behavioral
 //Strategy();
 //State();
 //Visitor();
 //VisitorDemo2();
 //TemplateMethod();
+TemplateMethodDemo2();
 //Command();
 //ChainOfResponsibility();
-ChainOfResponsibilityDemo2();
+//ChainOfResponsibilityDemo2();
 //Memento();
 //Iterator();
 //Mediator();
@@ -247,6 +243,11 @@ void TemplateMethod()
 {
     var task = new TransferMoneyTask();
     task.Execute();
+}
+void TemplateMethodDemo2()
+{
+    var window = new ChatWindow();
+    window.close();
 }
 void Command()
 {
@@ -478,9 +479,3 @@ void Flyweight()
     //}
 }
 #endregion
-
-//static bool IsCont(int FileType)
-//{
-//    var fileTypesContinuousContent = new List<int>() { 10007, 10008, 10009, 10010 };
-//    return fileTypesContinuousContent.Contains(FileType);
-//}
