@@ -4,6 +4,7 @@ using DesignPatterns.Behavioral.Command;
 using DesignPatterns.Behavioral.Command.Example2;
 using DesignPatterns.Behavioral.Command.Example3_UndoableOperations;
 using DesignPatterns.Behavioral.Iterator;
+using DesignPatterns.Behavioral.Iterator.Demo2;
 using DesignPatterns.Behavioral.Mediator;
 using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.Observer;
@@ -32,17 +33,18 @@ using DesignPatterns.Structural.Flyweight;
 using DesignPatterns.Structural.Proxy;
 
 #region Call Behavioral
-//Strategy();
+Strategy();
 //State();
 //Visitor();
 //VisitorDemo2();
 //TemplateMethod();
-TemplateMethodDemo2();
+//TemplateMethodDemo2();
 //Command();
 //ChainOfResponsibility();
 //ChainOfResponsibilityDemo2();
 //Memento();
 //Iterator();
+//Iterator_Demo2();
 //Mediator();
 //Observer();
 
@@ -354,6 +356,20 @@ void Iterator()
     //    Console.WriteLine(url);
     //}
 
+}
+void Iterator_Demo2()
+{
+    var collection = new ProductCollection();
+    collection.Add(new Product(1, "a"));
+    collection.Add(new Product(2, "b"));
+    collection.Add(new Product(3, "c"));
+
+    var iterator = collection.CreateIterator();
+    while (iterator.HasNext())
+    {
+        Console.WriteLine(iterator.Current());
+        iterator.Next();
+    }
 }
 void Mediator()
 {
