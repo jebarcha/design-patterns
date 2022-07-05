@@ -10,6 +10,7 @@ using DesignPatterns.Behavioral.Memento;
 using DesignPatterns.Behavioral.Observer;
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.Strategy;
+using DesignPatterns.Behavioral.Strategy.Demo2;
 using DesignPatterns.Behavioral.TemplateMethod;
 using DesignPatterns.Behavioral.TemplateMethod.Demo2;
 using DesignPatterns.Behavioral.Visitor;
@@ -33,7 +34,8 @@ using DesignPatterns.Structural.Flyweight;
 using DesignPatterns.Structural.Proxy;
 
 #region Call Behavioral
-Strategy();
+//Strategy();
+Strategy_Demo2();
 //State();
 //Visitor();
 //VisitorDemo2();
@@ -203,6 +205,14 @@ void Strategy()
     var imageStorage = new ImageStorage();
     imageStorage.store("a", new JpegCompressor(), new BlackAndWhiteFilter());
     imageStorage.store("b", new PngCompressor(), new BlackAndWhiteFilter());
+}
+void Strategy_Demo2()
+{
+    var client = new ChatClient(new DES());
+    client.send("Hello World");
+
+    client = new ChatClient(new AES());
+    client.send("Hello World");
 }
 void State()
 {
