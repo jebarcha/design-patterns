@@ -35,8 +35,9 @@ using DesignPatterns.Structural.Proxy;
 
 #region Call Behavioral
 //Strategy();
-Strategy_Demo2();
+//Strategy_Demo2();
 //State();
+State_Demo2();
 //Visitor();
 //VisitorDemo2();
 //TemplateMethod();
@@ -229,6 +230,13 @@ void State()
     canvas.MouseDown();
     canvas.MouseUp();
 
+}
+void State_Demo2()
+{
+    var service = new DesignPatterns.Behavioral.State.Demo2.DirectionService(
+            new DesignPatterns.Behavioral.State.Demo2.Walking());
+    service.GetEta();
+    service.GetDirection();
 }
 void Visitor()
 {
