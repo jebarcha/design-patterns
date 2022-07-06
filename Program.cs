@@ -37,7 +37,7 @@ using DesignPatterns.Structural.Proxy;
 //Strategy();
 //Strategy_Demo2();
 //State();
-State_Demo2();
+//State_Demo2();
 //Visitor();
 //VisitorDemo2();
 //TemplateMethod();
@@ -46,6 +46,7 @@ State_Demo2();
 //ChainOfResponsibility();
 //ChainOfResponsibilityDemo2();
 //Memento();
+Memento_Demo2();
 //Iterator();
 //Iterator_Demo2();
 //Mediator();
@@ -348,8 +349,53 @@ void Memento()
     editor.Restore(history.Pop());
 
     Console.WriteLine(editor.GetContent());
+    Console.WriteLine("---");
     editor.Restore(history.Pop());
     Console.WriteLine(editor.GetContent());
+}
+void Memento_Demo2()
+{
+    var document = new DesignPatterns.Behavioral.Memento.Demo2.Document();
+    var history = new DesignPatterns.Behavioral.Memento.Demo2.History();
+
+    //document.SetContent("Hello");
+    //history.Push(document.CreateMemento());
+
+    //document.SetFontName("Font 1");
+    //history.Push(document.CreateMemento());
+
+    //document.SetFontSize(10);
+
+    //Console.WriteLine(document);
+
+    //document.Restore(history.Pop());
+    //Console.WriteLine(document);
+
+    //document.Restore(history.Pop());
+    //Console.WriteLine(document);
+
+
+
+    document.SetContent("a");
+    document.SetFontSize(14);
+    document.SetFontName("Arial");
+    history.Push(document.CreateMemento());
+
+    document.SetContent("b");
+    document.SetFontSize(12);
+    document.SetFontName("Times Sq");
+    history.Push(document.CreateMemento());
+
+    document.SetContent("c");
+    document.SetFontSize(10);
+    document.SetFontName("Console");
+    history.Push(document.CreateMemento());
+
+    Console.WriteLine(document.GetContent());
+    Console.WriteLine("---");
+    document.Restore(history.Pop());
+    Console.WriteLine(document.GetContent());
+
 }
 void Iterator()
 {
