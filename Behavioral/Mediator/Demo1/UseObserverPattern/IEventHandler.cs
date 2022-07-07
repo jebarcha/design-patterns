@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.Behavioral.Mediator.UseObserverPattern
 {
-    public interface IEventHandler //IObserver
+    public abstract class IEventHandler //IObserver
     {
-        void Handle();  // Update();
+        public abstract void Handle();  // Update();
     }
 }
